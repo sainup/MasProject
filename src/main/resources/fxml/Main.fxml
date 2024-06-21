@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.control.Label?>
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.MainController">
+  <top>
+    <MenuBar>
+      <Menu text="Books">
+        <MenuItem text="Add Book" onAction="#showAddBook"/>
+        <MenuItem text="Update Book" onAction="#showUpdateBook"/>
+        <MenuItem text="Delete Book" onAction="#showDeleteBook"/>
+        <MenuItem text="View Books" onAction="#showViewBooks"/>
+      </Menu>
+      <Menu text="Members">
+        <MenuItem text="Add Member" onAction="#showAddMember"/>
+        <MenuItem text="Update Member" onAction="#showUpdateMember"/>
+        <MenuItem text="Delete Member" onAction="#showDeleteMember"/>
+        <MenuItem text="View Members" onAction="#showViewMembers"/>
+      </Menu>
+      <Menu text="Transactions">
+        <MenuItem text="Record Borrowing" onAction="#showRecordBorrowing"/>
+        <MenuItem text="Return Book" onAction="#showReturnBook"/>
+      </Menu>
+      <Menu text="Payments">
+        <MenuItem text="Fine Payment" onAction="#showFinePayment"/>
+        <MenuItem text="Membership Payment" onAction="#showMembershipPayment"/>
+      </Menu>
+      <Menu text="Reports">
+        <MenuItem text="Borrowed Books Report" onAction="#showBorrowedBooksReport"/>
+        <MenuItem text="Overdue Books Report" onAction="#showOverdueBooksReport"/>
+        <MenuItem text="Member Activity Report" onAction="#showMemberActivityReport"/>
+      </Menu>
+      <Menu text="Search">
+        <MenuItem text="Search Books" onAction="#showSearchBooks"/>
+      </Menu>
+      <Menu text="Reserve">
+        <MenuItem text="Reserve Book" onAction="#showReserveBook"/>
+      </Menu>
+    </MenuBar>
+  </top>
+  <center>
+      <Label text="Welcome to the Library Management System" fx:id="mainLabel"/>
+  </center>
+</BorderPane>

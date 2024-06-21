@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ReportsController">
+    <TableView fx:id="borrowedBooksTable" layoutX="14.0" layoutY="14.0" AnchorPane.topAnchor="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" text="Book ID"/>
+            <TableColumn fx:id="titleColumn" text="Title"/>
+            <TableColumn fx:id="authorColumn" text="Author"/>
+            <TableColumn fx:id="borrowedByColumn" text="Borrowed By"/>
+            <TableColumn fx:id="borrowDateColumn" text="Borrow Date"/>
+            <TableColumn fx:id="returnDateColumn" text="Return Date"/>
+            <TableColumn fx:id="statusColumn" text="Status"/>
+        </columns>
+    </TableView>
+</AnchorPane>

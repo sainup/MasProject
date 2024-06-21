@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.FinePaymentController">
+    <!-- Title label for the form -->
+    <Label text="Process Fine Payment" styleClass="title" />
+
+    <!-- TextField for the member ID -->
+    <TextField fx:id="memberIdField" promptText="Member ID" />
+
+    <!-- Button to trigger the searchMember method in the controller -->
+    <Button text="Search Member" onAction="#searchMember" />
+
+    <!-- TextField for the payment amount -->
+    <TextField fx:id="amountField" promptText="Amount" />
+
+    <!-- Button to trigger the processPayment method in the controller -->
+    <Button text="Process Payment" onAction="#processPayment" />
+</VBox>

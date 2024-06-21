@@ -1,0 +1,43 @@
+/* styles.css */
+
+.root {
+    -fx-font-family: Arial, sans-serif;
+}
+
+.title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+    -fx-padding: 20 0 10 0;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495E;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-background-color: #2980B9;
+    -fx-text-fill: white;
+    -fx-padding: 5 10 5 10;
+}
+
+.button:hover {
+    -fx-background-color: #3498DB;
+}
+
+.table-view {
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.table-column {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495E;
+}
