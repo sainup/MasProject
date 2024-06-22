@@ -18,8 +18,8 @@
         <Label text="ISBN:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
         <TextField fx:id="isbnField" promptText="Enter ISBN" GridPane.rowIndex="2" GridPane.columnIndex="1" />
 
-        <Label text="Status:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-        <TextField fx:id="statusField" promptText="Enter Status" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <Label text="Category:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="categoryField" promptText="Enter Category" GridPane.rowIndex="3" GridPane.columnIndex="1" />
 
         <Button text="Add Book" onAction="#addBook" defaultButton="true" GridPane.rowIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
     </GridPane>

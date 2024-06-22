@@ -30,19 +30,16 @@ public class Cash extends PaymentMethod {
      */
     public Cash() {}
 
-    /**
-     * Gets the receipt number.
-     * @return the receipt number
-     */
     public String getReceiptNumber() {
         return receiptNumber;
     }
 
-    /**
-     * Sets the receipt number.
-     * @param receiptNumber the receipt number to set
-     */
     public void setReceiptNumber(String receiptNumber) {
         this.receiptNumber = receiptNumber;
+    }
+
+    @Override
+    public String getPaymentDetails() {
+        return "Cash: Receipt " + receiptNumber;
     }
 }

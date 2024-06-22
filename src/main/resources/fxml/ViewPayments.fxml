@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewPaymentsController">
-    <TableView fx:id="paymentsTable" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewPaymentsController"
+      spacing="10" alignment="CENTER">
+    <TableView fx:id="paymentsTable" prefWidth="600">
         <columns>
-            <TableColumn fx:id="idColumn" text="Payment ID"/>
-            <TableColumn fx:id="memberNameColumn" text="Member Name"/>
-            <TableColumn fx:id="amountColumn" text="Amount"/>
-            <TableColumn fx:id="typeColumn" text="Type"/>
-            <TableColumn fx:id="dateColumn" text="Date"/>
+            <TableColumn fx:id="idColumn" text="Payment ID" />
+            <TableColumn fx:id="memberNameColumn" text="Member Name" />
+            <TableColumn fx:id="amountColumn" text="Amount" />
+            <TableColumn fx:id="typeColumn" text="Type" />
+            <TableColumn fx:id="dateColumn" text="Date" />
+            <TableColumn fx:id="paymentMethodColumn" text="Payment Method" />
         </columns>
     </TableView>
-</AnchorPane>
+</VBox>

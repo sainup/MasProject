@@ -4,21 +4,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
+
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.AddMemberController"
       spacing="20" alignment="CENTER" stylesheets="@../styles/styles.css">
-    <!-- Title label for the form -->
     <Label text="Add Member" styleClass="title" />
-
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <!-- Label and TextField for the member name -->
         <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
         <TextField fx:id="nameField" promptText="Enter Name" GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-        <!-- Label and TextField for the member birthdate -->
         <Label text="Birthdate:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TextField fx:id="birthdateField" promptText="Enter Birthdate (yyyy-MM-dd)" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <TextField fx:id="birthdateField" promptText="Enter Birthdate (YYYY-MM-DD)" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-        <!-- Button to trigger the addMember method in the controller -->
-        <Button text="Add Member" onAction="#addMember" defaultButton="true" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+        <Label text="Street:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <TextField fx:id="streetField" promptText="Enter Street" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="City:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="cityField" promptText="Enter City" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+        <Label text="Zip Code:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <TextField fx:id="zipCodeField" promptText="Enter Zip Code" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+        <Button text="Add Member" onAction="#addMember" defaultButton="true" GridPane.rowIndex="5" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
     </GridPane>
 </VBox>

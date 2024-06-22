@@ -14,6 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller class for generating and displaying various reports.
+ */
 public class ReportsController {
 
     @FXML
@@ -42,6 +45,9 @@ public class ReportsController {
 
     private ObservableList<Borrow> borrowList;
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         bookIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBook().idProperty());
@@ -57,6 +63,9 @@ public class ReportsController {
         borrowedBooksTable.setItems(borrowList);
     }
 
+    /**
+     * Loads the borrowed books data from the database.
+     */
     private void loadBorrowedBooks() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Borrow> borrows = session.createQuery("from Borrow", Borrow.class).list();

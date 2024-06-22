@@ -12,6 +12,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
+/**
+ * Controller class for viewing books in the library.
+ */
 public class ViewBooksController {
 
     @FXML
@@ -34,6 +37,9 @@ public class ViewBooksController {
 
     private ObservableList<Book> bookList;
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -47,6 +53,9 @@ public class ViewBooksController {
         booksTable.setItems(bookList);
     }
 
+    /**
+     * Loads books from the database and populates the table.
+     */
     private void loadBooks() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Book> books = session.createQuery("from Book", Book.class).list();

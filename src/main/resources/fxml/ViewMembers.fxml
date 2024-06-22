@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewMembersController">
-    <TableView fx:id="membersTable" prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewMembersController" spacing="15" stylesheets="@../styles/styles.css">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <TableView fx:id="membersTable" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS" styleClass="table-view">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID"/>
-            <TableColumn fx:id="nameColumn" text="Name"/>
-            <TableColumn fx:id="birthdateColumn" text="Birthdate"/>
-            <TableColumn fx:id="memberIdColumn" text="Member ID"/>
-            <TableColumn fx:id="goldMemberColumn" text="Gold Member"/>
-            <TableColumn fx:id="daysBorrowedColumn" text="Days Borrowed"/>
+            <TableColumn fx:id="idColumn" text="ID" minWidth="50" styleClass="table-column"/>
+            <TableColumn fx:id="nameColumn" text="Name" minWidth="150" styleClass="table-column"/>
+            <TableColumn fx:id="birthdateColumn" text="Birthdate" minWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="goldMemberColumn" text="Gold Member" minWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="daysBorrowedColumn" text="Days Borrowed" minWidth="100" styleClass="table-column"/>
         </columns>
     </TableView>
-    <Button fx:id="updateMemberButton" text="Update Member"/>
-    <Button fx:id="deleteMemberButton" text="Delete Member"/>
+    <HBox spacing="10" alignment="CENTER" styleClass="hbox">
+        <Button fx:id="updateMemberButton" text="Update Member" minWidth="100" styleClass="button"/>
+        <Button fx:id="deleteMemberButton" text="Delete Member" minWidth="100" styleClass="button"/>
+    </HBox>
 </VBox>

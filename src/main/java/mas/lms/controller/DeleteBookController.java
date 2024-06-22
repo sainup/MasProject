@@ -2,12 +2,9 @@ package mas.lms.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import mas.lms.model.Book;
-import mas.lms.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import mas.lms.util.DeletionUtil;
 
 /**
  * Controller class for deleting a book from the library.
@@ -29,43 +26,17 @@ public class DeleteBookController {
 
         // Validate input field
         if (bookIdStr.isEmpty()) {
-            showAlert("Validation Error", "Please enter Book ID.");
+            DeletionUtil.showAlert("Validation Error", "Please enter Book ID.");
             return;
         }
 
         // Delete the book from the database
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
             long bookId = Long.parseLong(bookIdStr);
-            Transaction transaction = session.beginTransaction();
-            Book book = session.get(Book.class, bookId);
-            if (book == null) {
-                showAlert("Error", "Book not found.");
-                return;
-            }
-
-            session.delete(book);
-            transaction.commit();
-            showAlert("Success", "Book deleted successfully!");
+            DeletionUtil.deleteEntity(Book.class, bookId, "Book");
             bookIdField.clear();
         } catch (NumberFormatException e) {
-            showAlert("Validation Error", "Invalid Book ID.");
-        } catch (Exception e) {
-            showAlert("Error", "An error occurred while deleting the book.");
-            e.printStackTrace();
+            DeletionUtil.showAlert("Validation Error", "Invalid Book ID.");
         }
-    }
-
-    /**
-     * Displays an alert dialog with the specified title and message.
-     *
-     * @param title The title of the alert dialog.
-     * @param message The message to be displayed in the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

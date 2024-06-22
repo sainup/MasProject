@@ -13,6 +13,9 @@ import org.hibernate.Session;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller class for generating and displaying the Overdue Books Report.
+ */
 public class OverdueBooksReportController {
 
     @FXML
@@ -41,6 +44,9 @@ public class OverdueBooksReportController {
 
     private ObservableList<Borrow> overdueBooksList;
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         bookIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBook().idProperty().asObject());
@@ -56,6 +62,9 @@ public class OverdueBooksReportController {
         overdueBooksTable.setItems(overdueBooksList);
     }
 
+    /**
+     * Loads the overdue books data from the database.
+     */
     private void loadOverdueBooks() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Borrow> borrows = session.createQuery("from Borrow where returnDate is null and borrowDate < :date", Borrow.class)

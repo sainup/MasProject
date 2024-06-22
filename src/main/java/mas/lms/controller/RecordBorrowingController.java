@@ -18,6 +18,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for recording book borrowings.
+ */
 public class RecordBorrowingController {
 
     @FXML
@@ -32,6 +35,12 @@ public class RecordBorrowingController {
     private Member member;
     private Book book;
 
+    /**
+     * Handles the action event when the "Search Member" button is clicked.
+     * Searches for the member in the database and displays their borrowed books.
+     *
+     * @param event The action event triggered by clicking the "Search Member" button.
+     */
     @FXML
     private void searchMember(ActionEvent event) {
         String memberIdStr = memberIdField.getText();
@@ -58,6 +67,11 @@ public class RecordBorrowingController {
         }
     }
 
+    /**
+     * Updates the list view with the borrowed books of the member.
+     *
+     * @param borrows The list of borrows to display.
+     */
     private void updateBorrowedBooksList(List<Borrow> borrows) {
         ObservableList<String> borrowedBooks = FXCollections.observableArrayList();
         for (Borrow borrow : borrows) {
@@ -67,6 +81,12 @@ public class RecordBorrowingController {
         borrowedBooksListView.setItems(borrowedBooks);
     }
 
+    /**
+     * Handles the action event when the "Search Book" button is clicked.
+     * Searches for the book in the database.
+     *
+     * @param event The action event triggered by clicking the "Search Book" button.
+     */
     @FXML
     private void searchBook(ActionEvent event) {
         String bookIdStr = bookIdField.getText();
@@ -91,6 +111,12 @@ public class RecordBorrowingController {
         }
     }
 
+    /**
+     * Handles the action event when the "Record Borrowing" button is clicked.
+     * Records the borrowing transaction for the selected member and book.
+     *
+     * @param event The action event triggered by clicking the "Record Borrowing" button.
+     */
     @FXML
     private void recordBorrowing(ActionEvent event) {
         if (member == null) {
@@ -137,6 +163,12 @@ public class RecordBorrowingController {
         }
     }
 
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title The title of the alert dialog.
+     * @param message The message to be displayed in the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

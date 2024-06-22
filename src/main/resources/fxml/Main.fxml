@@ -28,6 +28,7 @@
       <Menu text="Payments">
         <MenuItem text="Fine Payment" onAction="#showFinePayment"/>
         <MenuItem text="Membership Payment" onAction="#showMembershipPayment"/>
+        <MenuItem text="View Payments" onAction="#showViewPayments"/>
       </Menu>
       <Menu text="Reports">
         <MenuItem text="Borrowed Books Report" onAction="#showBorrowedBooksReport"/>

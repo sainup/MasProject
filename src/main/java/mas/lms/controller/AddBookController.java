@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import mas.lms.model.Book;
+import mas.lms.model.Category;
 import mas.lms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,9 +23,8 @@ public class AddBookController {
 
     @FXML
     private TextField isbnField;
-
     @FXML
-    private TextField statusField;
+    private TextField categoryField;
 
     /**
      * Handles the action event when the "Add Book" button is clicked.
@@ -37,23 +37,25 @@ public class AddBookController {
         String title = titleField.getText();
         String author = authorField.getText();
         String isbn = isbnField.getText();
-        String status = statusField.getText();
+        String categoryName = categoryField.getText();
 
-        // Validate input fields
-        if (title.isEmpty() || author.isEmpty() || isbn.isEmpty() || status.isEmpty()) {
-            showAlert("Validation Error", "All fields are required.");
+        if (title.isEmpty() || author.isEmpty() || categoryName.isEmpty()) {
+            showAlert("Validation Error", "Title, Author, and Category are required.");
             return;
         }
 
-        // Add the book to the database
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Book book = new Book();
-            book.setTitle(title);
-            book.setAuthor(author);
-            book.setIsbn(isbn);
-            book.setStatus(status);
+
+            Category category = session.createQuery("from Category where name = :name", Category.class)
+                    .setParameter("name", categoryName)
+                    .uniqueResultOptional()
+                    .orElse(new Category(categoryName));
+
+            Book book = new Book(title, author, isbn, category);
+            session.save(category);
             session.save(book);
+
             transaction.commit();
             showAlert("Success", "Book added successfully!");
             clearFields();
@@ -63,10 +65,11 @@ public class AddBookController {
         }
     }
 
+
     /**
      * Displays an alert dialog with the specified title and message.
      *
-     * @param title The title of the alert dialog.
+     * @param title   The title of the alert dialog.
      * @param message The message to be displayed in the alert dialog.
      */
     private void showAlert(String title, String message) {
@@ -84,6 +87,6 @@ public class AddBookController {
         titleField.clear();
         authorField.clear();
         isbnField.clear();
-        statusField.clear();
+        categoryField.clear();
     }
 }

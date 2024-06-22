@@ -16,6 +16,9 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
+/**
+ * Controller class for searching books in the library.
+ */
 public class SearchBooksController {
 
     @FXML
@@ -50,6 +53,9 @@ public class SearchBooksController {
 
     private ObservableList<Book> bookList;
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         bookIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -62,6 +68,12 @@ public class SearchBooksController {
         booksTable.setItems(bookList);
     }
 
+    /**
+     * Handles the action event when the "Search Books" button is clicked.
+     * Searches for books in the database based on the provided criteria.
+     *
+     * @param event The action event triggered by clicking the "Search Books" button.
+     */
     @FXML
     private void searchBooks(ActionEvent event) {
         String title = titleField.getText();
@@ -100,6 +112,12 @@ public class SearchBooksController {
         }
     }
 
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title The title of the alert dialog.
+     * @param message The message to be displayed in the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

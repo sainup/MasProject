@@ -13,6 +13,9 @@ import org.hibernate.Session;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller class for viewing payments in the library.
+ */
 public class ViewPaymentsController {
 
     @FXML
@@ -33,8 +36,13 @@ public class ViewPaymentsController {
     @FXML
     private TableColumn<Payment, LocalDate> dateColumn;
 
-    private ObservableList<Payment> paymentList;
+    @FXML
+    private TableColumn<Payment, String> paymentMethodColumn;
 
+    private ObservableList<Payment> paymentList;
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -42,12 +50,16 @@ public class ViewPaymentsController {
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        paymentMethodColumn.setCellValueFactory(cellData -> cellData.getValue().getPaymentMethod().toStringProperty());
 
         paymentList = FXCollections.observableArrayList();
         loadPayments();
         paymentsTable.setItems(paymentList);
     }
 
+    /**
+     * Loads payments from the database and populates the table.
+     */
     private void loadPayments() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Payment> payments = session.createQuery("from Payment", Payment.class).list();

@@ -3,6 +3,8 @@ package mas.lms.model;
 import jakarta.persistence.*;
 import javafx.beans.property.*;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,11 +19,15 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private String isbn;
+    private String isbn; // Optional attribute
     private String status;
+    private LocalDate additionDate; // Derived attribute
 
     @ManyToOne
     private Library library;
+
+    @ManyToOne
+    private Category category;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private Set<Borrow> borrows = new HashSet<>();
@@ -31,18 +37,47 @@ public class Book {
      * @param title the title of the book
      * @param author the author of the book
      * @param isbn the ISBN of the book
+     * @param category the category of the book
      */
-    public Book(String title, String author, String isbn) {
+    public Book(String title, String author, String isbn, Category category) {
         this.title = title;
         this.author = author;
-        this.isbn = isbn;
+        setIsbn(isbn); // Apply attribute constraint
         this.status = "available";
+        this.additionDate = LocalDate.now();
+        this.category = category;
     }
 
     /**
      * Default constructor for Book.
      */
     public Book() {}
+
+    /**
+     * Overloaded constructor without ISBN.
+     * @param title the title of the book
+     * @param author the author of the book
+     */
+    public Book(String title, String author) {
+        this(title, author, null, null); // Call the other constructor with null ISBN and Category
+    }
+
+    /**
+     * Gets the date the book was added to the library.
+     * @return the addition date
+     */
+    public LocalDate getAdditionDate() {
+        return additionDate;
+    }
+
+    /**
+     * Method to calculate the number of days since the book was added.
+     * @return the number of days since the book was added
+     */
+    public long getDaysSinceAdded() {
+        LocalDate currentDate = LocalDate.now();
+        return ChronoUnit.DAYS.between(additionDate, currentDate); // Derived attribute
+    }
 
     /**
      * Gets the ID of the book.
@@ -121,6 +156,9 @@ public class Book {
      * @param isbn the ISBN to set
      */
     public void setIsbn(String isbn) {
+        if (isbn != null && (isbn.length() != 13 || !isbn.matches("\\d+"))) {
+            throw new IllegalArgumentException("ISBN must be exactly 13 digits long"); // Attribute constraint
+        }
         this.isbn = isbn;
     }
 
@@ -198,6 +236,22 @@ public class Book {
     }
 
     /**
+     * Gets the category of the book.
+     * @return the category
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the category of the book.
+     * @param category the category to set
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    /**
      * Overriding toString method to return book details.
      * @return String representation of the book
      */
@@ -210,6 +264,7 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", status='" + status + '\'' +
                 ", library=" + library +
+                ", category=" + category +
                 '}';
     }
 }

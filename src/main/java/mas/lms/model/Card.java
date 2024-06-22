@@ -70,4 +70,9 @@ public class Card extends PaymentMethod {
     public void setCvv(String cvv) {
         this.cvv = cvv;
     }
+
+    @Override
+    public String getPaymentDetails() {
+        return "Card: " + cardHolderName + " (" + cardNumber + ")";
+    }
 }

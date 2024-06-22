@@ -9,6 +9,9 @@ import mas.lms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+/**
+ * Controller class for updating book information.
+ */
 public class UpdateBookController {
 
     @FXML
@@ -23,6 +26,12 @@ public class UpdateBookController {
     @FXML
     private TextField isbnField;
 
+    /**
+     * Handles the action event when the "Update Book" button is clicked.
+     * Updates the book information in the database.
+     *
+     * @param event The action event triggered by clicking the "Update Book" button.
+     */
     @FXML
     private void updateBook(ActionEvent event) {
         String bookIdStr = bookIdField.getText();
@@ -62,6 +71,12 @@ public class UpdateBookController {
         }
     }
 
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title The title of the alert dialog.
+     * @param message The message to be displayed in the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

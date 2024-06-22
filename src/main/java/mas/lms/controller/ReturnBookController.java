@@ -28,6 +28,12 @@ public class ReturnBookController {
     private Member member;
     private Book book;
 
+    /**
+     * Handles the action event when the "Search Member" button is clicked.
+     * Searches for the member in the database.
+     *
+     * @param event The action event triggered by clicking the "Search Member" button.
+     */
     @FXML
     private void searchMember(ActionEvent event) {
         String memberIdStr = memberIdField.getText();
@@ -53,6 +59,12 @@ public class ReturnBookController {
         }
     }
 
+    /**
+     * Handles the action event when the "Search Book" button is clicked.
+     * Searches for the book in the database.
+     *
+     * @param event The action event triggered by clicking the "Search Book" button.
+     */
     @FXML
     private void searchBook(ActionEvent event) {
         String bookIdStr = bookIdField.getText();
@@ -147,6 +159,12 @@ public class ReturnBookController {
         }
     }
 
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title The title of the alert dialog.
+     * @param message The message to be displayed in the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

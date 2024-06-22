@@ -4,8 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import mas.lms.util.HibernateUtil;
+import mas.lms.model.Address;
 import mas.lms.model.Member;
+import mas.lms.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,6 +23,15 @@ public class AddMemberController {
     @FXML
     private TextField birthdateField;
 
+    @FXML
+    private TextField streetField;
+
+    @FXML
+    private TextField cityField;
+
+    @FXML
+    private TextField zipCodeField;
+
     /**
      * Handles the action event when the "Add Member" button is clicked.
      * Validates the input fields and saves the new member to the database.
@@ -32,22 +42,26 @@ public class AddMemberController {
     private void addMember(ActionEvent event) {
         String name = nameField.getText();
         String birthdate = birthdateField.getText();
+        String street = streetField.getText();
+        String city = cityField.getText();
+        String zipCode = zipCodeField.getText();
 
         // Validate input fields
-        if (name.isEmpty() || birthdate.isEmpty()) {
-            showAlert("Validation Error", "Name and Birthdate are required.");
+        if (name.isEmpty() || birthdate.isEmpty() || street.isEmpty() || city.isEmpty() || zipCode.isEmpty()) {
+            showAlert("Validation Error", "Name, Birthdate, and Address fields are required.");
             return;
         }
 
         // Parse birthdate and save the new member to the database
         try {
             LocalDate birthDateParsed = LocalDate.parse(birthdate);
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            Transaction transaction = session.beginTransaction();
-            Member member = new Member(name, birthDateParsed);
-            session.save(member);
-            transaction.commit();
-            session.close();
+            Address address = new Address(street, city, zipCode);
+            try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+                Transaction transaction = session.beginTransaction();
+                Member member = new Member(name, birthDateParsed, address);
+                session.save(member);
+                transaction.commit();
+            }
             showAlert("Success", "Member added successfully!");
             clearFields();
         } catch (Exception e) {
@@ -76,5 +90,8 @@ public class AddMemberController {
     private void clearFields() {
         nameField.clear();
         birthdateField.clear();
+        streetField.clear();
+        cityField.clear();
+        zipCodeField.clear();
     }
 }

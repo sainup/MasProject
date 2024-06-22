@@ -3,12 +3,15 @@ package mas.lms.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import mas.lms.model.*;
 import mas.lms.util.HibernateUtil;
-import mas.lms.model.Member;
-import mas.lms.model.Payment;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Controller class for processing fine payments.
@@ -21,7 +24,41 @@ public class FinePaymentController {
     @FXML
     private TextField amountField;
 
+    @FXML
+    private ComboBox<String> paymentMethodComboBox;
+
+    @FXML
+    private TextField cardNumberField;
+
+    @FXML
+    private TextField cardHolderField;
+
+    @FXML
+    private TextField expiryDateField;
+
+    @FXML
+    private TextField cvvField;
+
+    @FXML
+    private TextField receiptNumberField;
+
     private Member member;
+
+    @FXML
+    public void initialize() {
+        paymentMethodComboBox.getItems().addAll("Card", "Cash");
+        paymentMethodComboBox.setOnAction(e -> togglePaymentFields());
+        togglePaymentFields();
+    }
+
+    private void togglePaymentFields() {
+        boolean isCard = "Card".equals(paymentMethodComboBox.getValue());
+        cardNumberField.setVisible(isCard);
+        cardHolderField.setVisible(isCard);
+        expiryDateField.setVisible(isCard);
+        cvvField.setVisible(isCard);
+        receiptNumberField.setVisible(!isCard);
+    }
 
     /**
      * Handles the action event when the "Search Member" button is clicked.
@@ -37,7 +74,6 @@ public class FinePaymentController {
             return;
         }
 
-        // Search for the member in the database
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             long memberId = Long.parseLong(memberIdStr);
             member = session.get(Member.class, memberId);
@@ -72,18 +108,25 @@ public class FinePaymentController {
             return;
         }
 
-        // Process the payment
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             double amount = Double.parseDouble(amountStr);
-            Payment payment = new Payment(member, amount, "fine");
+            PaymentMethod paymentMethod;
+            if ("Card".equals(paymentMethodComboBox.getValue())) {
+                paymentMethod = new Card(cardNumberField.getText(), cardHolderField.getText(),
+                        expiryDateField.getText(), cvvField.getText(), BigDecimal.valueOf(amount), LocalDate.now());
+            } else {
+                paymentMethod = new Cash(receiptNumberField.getText(), BigDecimal.valueOf(amount), LocalDate.now());
+            }
+
+            Payment payment = new Payment(member, amount, "fine", paymentMethod);
 
             Transaction transaction = session.beginTransaction();
+            session.save(paymentMethod);
             session.save(payment);
             transaction.commit();
 
             showAlert("Success", "Payment processed successfully!");
-            memberIdField.clear();
-            amountField.clear();
+            clearFields();
             member = null;
         } catch (NumberFormatException e) {
             showAlert("Validation Error", "Invalid amount.");
@@ -92,6 +135,17 @@ public class FinePaymentController {
             e.printStackTrace();
         }
     }
+
+    private void clearFields() {
+        memberIdField.clear();
+        amountField.clear();
+        cardNumberField.clear();
+        cardHolderField.clear();
+        expiryDateField.clear();
+        cvvField.clear();
+        receiptNumberField.clear();
+    }
+
 
     /**
      * Displays an alert dialog with the specified title and message.

@@ -13,6 +13,9 @@ import org.hibernate.Session;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller class for generating and displaying the Member Activity Report.
+ */
 public class MemberActivityReportController {
 
     @FXML
@@ -41,6 +44,9 @@ public class MemberActivityReportController {
 
     private ObservableList<Borrow> memberActivityList;
 
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     */
     @FXML
     public void initialize() {
         bookIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBook().idProperty().asObject());
@@ -56,6 +62,9 @@ public class MemberActivityReportController {
         memberActivityTable.setItems(memberActivityList);
     }
 
+    /**
+     * Loads the member activity data from the database.
+     */
     private void loadMemberActivity() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Borrow> borrows = session.createQuery("from Borrow", Borrow.class).list();

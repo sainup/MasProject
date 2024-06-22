@@ -26,10 +26,16 @@
     -fx-background-color: #2980B9;
     -fx-text-fill: white;
     -fx-padding: 5 10 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
 }
 
 .button:hover {
     -fx-background-color: #3498DB;
+}
+
+.button:pressed {
+    -fx-background-color: #1F618D;
 }
 
 .table-view {
@@ -40,4 +46,27 @@
 .table-column {
     -fx-font-size: 14px;
     -fx-text-fill: #34495E;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #D6EAF8; /* Light blue background for selected rows */
+    -fx-text-fill: #2C3E50; /* Dark text color for selected rows */
+}
+
+.table-row-cell:focused {
+    -fx-background-color: #D6EAF8; /* Light blue background for focused rows */
+}
+
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.vbox {
+    -fx-spacing: 15;
+    -fx-padding: 20;
 }
