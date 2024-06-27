@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewMembersController" spacing="15" stylesheets="@../styles/styles.css">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewMembersController" spacing="15"
+      stylesheets="@../styles/styles.css">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>

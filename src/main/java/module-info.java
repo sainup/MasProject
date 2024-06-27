@@ -6,8 +6,6 @@ module mas.demo {
     requires java.naming;
 
 
-
-
     opens mas.lms.app to javafx.graphics;
     opens mas.lms.controller to javafx.fxml;
     opens mas.lms.model to javafx.base, org.hibernate.orm.core;

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
+
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.MemberActivityReportController" spacing="15" stylesheets="@../styles/styles.css">
-    <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
-    </padding>
-    <TableView fx:id="memberActivityTable" prefHeight="400.0" prefWidth="600.0" styleClass="table-view">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="mas.lms.controller.MemberActivityReportController"
+      spacing="10" alignment="CENTER" stylesheets="@../styles/styles.css">
+    <TableView fx:id="memberActivityTable" prefHeight="600" prefWidth="800">
         <columns>
-            <TableColumn fx:id="bookIdColumn" text="Book ID" minWidth="80" styleClass="table-column"/>
-            <TableColumn fx:id="titleColumn" text="Title" minWidth="150" styleClass="table-column"/>
-            <TableColumn fx:id="authorColumn" text="Author" minWidth="120" styleClass="table-column"/>
-            <TableColumn fx:id="borrowedByColumn" text="Borrowed By" minWidth="120" styleClass="table-column"/>
-            <TableColumn fx:id="borrowDateColumn" text="Borrow Date" minWidth="120" styleClass="table-column"/>
-            <TableColumn fx:id="returnDateColumn" text="Return Date" minWidth="120" styleClass="table-column"/>
-            <TableColumn fx:id="statusColumn" text="Status" minWidth="100" styleClass="table-column"/>
+            <TableColumn fx:id="bookIdColumn" text="Book ID" prefWidth="75"/>
+            <TableColumn fx:id="titleColumn" text="Title" prefWidth="150"/>
+            <TableColumn fx:id="authorColumn" text="Author" prefWidth="150"/>
+            <TableColumn fx:id="borrowedByColumn" text="Borrowed By" prefWidth="150"/>
+            <TableColumn fx:id="borrowDateColumn" text="Borrow Date" prefWidth="100"/>
+            <TableColumn fx:id="returnDateColumn" text="Return Date" prefWidth="100"/>
+            <TableColumn fx:id="statusColumn" text="Status" prefWidth="75"/>
+            <TableColumn fx:id="activityTypeColumn" text="Activity Type" prefWidth="100"/>
+            <TableColumn fx:id="amountColumn" text="Amount" prefWidth="75"/>
         </columns>
     </TableView>
 </VBox>

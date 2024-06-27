@@ -3,6 +3,7 @@ package mas.lms.app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mas.lms.model.*;
 import mas.lms.util.HibernateUtil;
@@ -22,7 +23,8 @@ public class LibraryApp extends Application {
         Scene scene = new Scene(loader.load(), 800, 600); // Set initial size
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/styles.css")).toExternalForm()); // Add CSS
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Library Management System");
+        primaryStage.setTitle("S25600 Library Management System");
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icon.png")))); // Set the icon
         primaryStage.setMinWidth(600); // Set minimum width
         primaryStage.setMinHeight(400); // Set minimum height
         primaryStage.show();
@@ -32,60 +34,72 @@ public class LibraryApp extends Application {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            // Create library
-            Library library = new Library("Central Library");
+            Library library = new Library("S25600 Library Management System");
 
-            // Create addresses
-            Address address1 = new Address("123 Main St", "Anytown", "12345");
-            Address address2 = new Address("456 Maple Ave", "Othertown", "67890");
+            Address address1 = new Address("123 Test St", "Test", "12345");
+            Address address2 = new Address("456 Dummy St", "Dummy", "67890");
 
-            // Create members with addresses
+            Publisher publisher1 = new Publisher("Tech Books Publishing", address1);
+            Publisher publisher2 = new Publisher("Clean Code Press", address2);
+
+            Category category1 = new Category("Programming");
+            Category category2 = new Category("Software Engineering");
+
             Member member1 = new Member("Anup Karki", LocalDate.of(1990, 1, 1), address1);
             Member member2 = new Member("Kasia Karki", LocalDate.of(1985, 5, 23), address2);
 
-            // Create categories
-            Category category1 = new Category("Programming");
-            Category category2 = new Category("Software Development");
+            // Save the library, publishers, and categories first
+            session.save(library);
+            session.save(publisher1);
+            session.save(publisher2);
+            session.save(category1);
+            session.save(category2);
 
-            // Create books with categories
-            Book book1 = new Book("Effective Java", "Joshua Bloch", "1234567891234", category1);
-            Book book2 = new Book("Clean Code", "Robert C. Martin", "9780132350884", category2);
+            Book book1 = new Book("Effective Java", "Joshua Bloch", category1, "1234567891234");
+            book1.setPublisher(publisher1);
+            Book book2 = new Book("Clean Code", "Robert C. Martin", category2, "9780132350884");
+            book2.setPublisher(publisher2);
 
-            // Add members and books to library
             library.addMember(member1);
             library.addMember(member2);
             library.addBook(book1);
             library.addBook(book2);
 
-            // Create borrowing records
+            // Sample Borrowing Data
             Borrow borrow1 = new Borrow(member1, book1, LocalDate.now().minusDays(5), null);
             Borrow borrow2 = new Borrow(member2, book2, LocalDate.now().minusDays(10), null);
+
             book1.setStatus("borrowed");
             book2.setStatus("borrowed");
 
-            // Create payment methods
-            PaymentMethod cardPayment = new Card("1111222233334444", "Anup Karki", "12/23", "123", BigDecimal.valueOf(50.0), LocalDate.now());
-            PaymentMethod cashPayment = new Cash("R123456", BigDecimal.valueOf(30.0), LocalDate.now());
+            // Sample Reservation Data
+            Reservation reservation1 = new Reservation(LocalDate.now().minusDays(2));
+            reservation1.setMember(member1);
+            reservation1.setBook(book2);
 
-            // Create payments
-            Payment membershipPayment1 = new Payment(member1, 50.0, "membership", cardPayment);
-            Payment finePayment1 = new Payment(member2, 30.0, "fine", cashPayment);
+            Reservation reservation2 = new Reservation(LocalDate.now().minusDays(1));
+            reservation2.setMember(member2);
+            reservation2.setBook(book1);
 
-            // Create fines
-            Fine fine1 = new Fine(BigDecimal.valueOf(10.0), LocalDate.now().minusDays(3));
-            member1.addFine(fine1);
+            // Sample Payment Data
+            PaymentMethod cardPayment = new Card("1234567890123456", "Anup Karki", "12/25", "123", new BigDecimal("50.00"), LocalDate.now().minusDays(3));
+            Payment payment1 = new Payment(member1, 50.00, "membership", cardPayment);
 
-            // Save all entities to the database
-            session.save(library);
-            session.save(category1);
-            session.save(category2);
+            PaymentMethod cashPayment = new Cash("R12345", new BigDecimal("20.00"), LocalDate.now().minusDays(2));
+            Payment payment2 = new Payment(member2, 20.00, "fine", cashPayment);
+
+            session.save(member1);
+            session.save(member2);
+            session.save(book1);
+            session.save(book2);
             session.save(borrow1);
             session.save(borrow2);
+            session.save(reservation1);
+            session.save(reservation2);
             session.save(cardPayment);
+            session.save(payment1);
             session.save(cashPayment);
-            session.save(membershipPayment1);
-            session.save(finePayment1);
-            session.save(fine1);
+            session.save(payment2);
 
             transaction.commit();
         } catch (Exception e) {

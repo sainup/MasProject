@@ -2,6 +2,7 @@ package mas.lms.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,12 +20,13 @@ public class Card extends PaymentMethod {
 
     /**
      * Constructor for creating a Card payment method.
-     * @param cardNumber the card number
+     *
+     * @param cardNumber     the card number
      * @param cardHolderName the card holder's name
-     * @param expiryDate the expiry date of the card
-     * @param cvv the CVV of the card
-     * @param amount the amount of the payment
-     * @param date the date of the payment
+     * @param expiryDate     the expiry date of the card
+     * @param cvv            the CVV of the card
+     * @param amount         the amount of the payment
+     * @param date           the date of the payment
      */
     public Card(String cardNumber, String cardHolderName, String expiryDate, String cvv, BigDecimal amount, LocalDate date) {
         super(amount, date);
@@ -37,7 +39,8 @@ public class Card extends PaymentMethod {
     /**
      * Default constructor for Card.
      */
-    public Card() {}
+    public Card() {
+    }
 
     public String getCardNumber() {
         return cardNumber;

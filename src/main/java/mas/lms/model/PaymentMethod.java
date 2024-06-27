@@ -23,8 +23,9 @@ public abstract class PaymentMethod {
 
     /**
      * Constructor for creating a PaymentMethod.
+     *
      * @param amount the amount of the payment
-     * @param date the date of the payment
+     * @param date   the date of the payment
      */
     public PaymentMethod(BigDecimal amount, LocalDate date) {
         this.amount = amount;
@@ -39,6 +40,7 @@ public abstract class PaymentMethod {
 
     /**
      * Gets the ID of the payment method.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -47,6 +49,7 @@ public abstract class PaymentMethod {
 
     /**
      * Sets the ID of the payment method.
+     *
      * @param id the ID to set
      */
     public void setId(Long id) {
@@ -55,6 +58,7 @@ public abstract class PaymentMethod {
 
     /**
      * Gets the amount of the payment.
+     *
      * @return the amount
      */
     public BigDecimal getAmount() {
@@ -63,6 +67,7 @@ public abstract class PaymentMethod {
 
     /**
      * Sets the amount of the payment.
+     *
      * @param amount the amount to set
      */
     public void setAmount(BigDecimal amount) {
@@ -71,6 +76,7 @@ public abstract class PaymentMethod {
 
     /**
      * Gets the date of the payment.
+     *
      * @return the date
      */
     public LocalDate getDate() {
@@ -79,6 +85,7 @@ public abstract class PaymentMethod {
 
     /**
      * Sets the date of the payment.
+     *
      * @param date the date to set
      */
     public void setDate(LocalDate date) {

@@ -2,6 +2,7 @@ package mas.lms.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -16,9 +17,10 @@ public class Cash extends PaymentMethod {
 
     /**
      * Constructor for creating a Cash payment method.
+     *
      * @param receiptNumber the receipt number
-     * @param amount the amount of the payment
-     * @param date the date of the payment
+     * @param amount        the amount of the payment
+     * @param date          the date of the payment
      */
     public Cash(String receiptNumber, BigDecimal amount, LocalDate date) {
         super(amount, date);
@@ -28,7 +30,8 @@ public class Cash extends PaymentMethod {
     /**
      * Default constructor for Cash.
      */
-    public Cash() {}
+    public Cash() {
+    }
 
     public String getReceiptNumber() {
         return receiptNumber;

@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -24,7 +25,8 @@ public class Fine {
 
     /**
      * Constructor for creating a Fine.
-     * @param amount the amount of the fine
+     *
+     * @param amount     the amount of the fine
      * @param dateIssued the date the fine was issued
      */
     public Fine(BigDecimal amount, LocalDate dateIssued) {
@@ -35,7 +37,8 @@ public class Fine {
     /**
      * Default constructor for Fine.
      */
-    public Fine() {}
+    public Fine() {
+    }
 
     public Long getId() {
         return id;

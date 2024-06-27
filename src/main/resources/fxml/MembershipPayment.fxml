@@ -6,35 +6,41 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.MembershipPaymentController"
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="mas.lms.controller.MembershipPaymentController"
       spacing="20" alignment="CENTER" stylesheets="@../styles/styles.css">
-    <Label text="Process Membership Payment" styleClass="title" />
+    <Label text="Process Membership Payment" styleClass="title"/>
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
 
-        <Label text="Amount:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TextField fx:id="amountField" promptText="Enter Amount" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <Label text="Amount:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="amountField" promptText="Enter Amount" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Payment Method:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-        <ComboBox fx:id="paymentMethodComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+        <Label text="Payment Method:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="paymentMethodComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="Card Number:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-        <TextField fx:id="cardNumberField" promptText="Enter Card Number" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <Label text="Card Number:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="cardNumberField" promptText="Enter Card Number" GridPane.rowIndex="3"
+                   GridPane.columnIndex="1"/>
 
-        <Label text="Card Holder:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-        <TextField fx:id="cardHolderField" promptText="Enter Card Holder" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+        <Label text="Card Holder:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="cardHolderField" promptText="Enter Card Holder" GridPane.rowIndex="4"
+                   GridPane.columnIndex="1"/>
 
-        <Label text="Expiry Date:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-        <TextField fx:id="expiryDateField" promptText="Enter Expiry Date (MM/YY)" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+        <Label text="Expiry Date:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="expiryDateField" promptText="Enter Expiry Date (MM/YY)" GridPane.rowIndex="5"
+                   GridPane.columnIndex="1"/>
 
-        <Label text="CVV:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-        <TextField fx:id="cvvField" promptText="Enter CVV" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+        <Label text="CVV:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="cvvField" promptText="Enter CVV" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-        <Label text="Receipt Number:" GridPane.rowIndex="7" GridPane.columnIndex="0" />
-        <TextField fx:id="receiptNumberField" promptText="Enter Receipt Number" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+        <Label text="Receipt Number:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="receiptNumberField" promptText="Enter Receipt Number" GridPane.rowIndex="7"
+                   GridPane.columnIndex="1"/>
 
-        <Button text="Process Payment" onAction="#processPayment" defaultButton="true" GridPane.rowIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+        <Button text="Process Payment" onAction="#processPayment" defaultButton="true" GridPane.rowIndex="8"
+                GridPane.columnSpan="2" GridPane.halignment="CENTER"/>
     </GridPane>
 </VBox>

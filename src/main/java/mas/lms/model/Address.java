@@ -14,8 +14,9 @@ public class Address {
 
     /**
      * Constructor for creating an Address.
-     * @param street the street address
-     * @param city the city
+     *
+     * @param street  the street address
+     * @param city    the city
      * @param zipCode the zip code
      */
     public Address(String street, String city, String zipCode) {
@@ -27,10 +28,12 @@ public class Address {
     /**
      * Default constructor for Address.
      */
-    public Address() {}
+    public Address() {
+    }
 
     /**
      * Gets the street address.
+     *
      * @return the street
      */
     public String getStreet() {
@@ -39,6 +42,7 @@ public class Address {
 
     /**
      * Sets the street address.
+     *
      * @param street the street to set
      */
     public void setStreet(String street) {
@@ -47,6 +51,7 @@ public class Address {
 
     /**
      * Gets the city.
+     *
      * @return the city
      */
     public String getCity() {
@@ -55,6 +60,7 @@ public class Address {
 
     /**
      * Sets the city.
+     *
      * @param city the city to set
      */
     public void setCity(String city) {
@@ -63,6 +69,7 @@ public class Address {
 
     /**
      * Gets the zip code.
+     *
      * @return the zip code
      */
     public String getZipCode() {
@@ -71,6 +78,7 @@ public class Address {
 
     /**
      * Sets the zip code.
+     *
      * @param zipCode the zip code to set
      */
     public void setZipCode(String zipCode) {

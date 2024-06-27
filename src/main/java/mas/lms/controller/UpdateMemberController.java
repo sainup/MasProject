@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import mas.lms.util.HibernateUtil;
+import mas.lms.model.Address;
 import mas.lms.model.Member;
+import mas.lms.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.time.LocalDate;
@@ -24,6 +25,15 @@ public class UpdateMemberController {
     @FXML
     private TextField birthdateField;
 
+    @FXML
+    private TextField streetField;
+
+    @FXML
+    private TextField cityField;
+
+    @FXML
+    private TextField zipCodeField;
+
     private Member member;
     private Stage stage;
 
@@ -37,6 +47,11 @@ public class UpdateMemberController {
         memberIdField.setText(String.valueOf(member.getId()));
         nameField.setText(member.getName());
         birthdateField.setText(member.getBirthdate().toString());
+        if (member.getAddress() != null) {
+            streetField.setText(member.getAddress().getStreet());
+            cityField.setText(member.getAddress().getCity());
+            zipCodeField.setText(member.getAddress().getZipCode());
+        }
     }
 
     /**
@@ -57,6 +72,9 @@ public class UpdateMemberController {
         String memberIdStr = memberIdField.getText();
         String name = nameField.getText();
         String birthdate = birthdateField.getText();
+        String street = streetField.getText();
+        String city = cityField.getText();
+        String zipCode = zipCodeField.getText();
 
         if (memberIdStr.isEmpty() || name.isEmpty() || birthdate.isEmpty()) {
             showAlert("Validation Error", "Member ID, Name, and Birthdate are required.");
@@ -75,11 +93,19 @@ public class UpdateMemberController {
             session.beginTransaction();
             member.setName(name);
             member.setBirthdate(LocalDate.parse(birthdate));
+            if (!street.isEmpty() && !city.isEmpty() && !zipCode.isEmpty()) {
+                member.setAddress(new Address(street, city, zipCode));
+            } else {
+                member.setAddress(null);
+            }
             session.update(member);
             session.getTransaction().commit();
 
             showAlert("Success", "Member updated successfully!");
-            stage.close(); // Close the dialog after successful update
+            clearFields();
+            if (stage != null) {
+                stage.close(); // Close the dialog after successful update
+            }
         } catch (Exception e) {
             showAlert("Error", "An error occurred while updating the member.");
             e.printStackTrace();
@@ -89,7 +115,7 @@ public class UpdateMemberController {
     /**
      * Displays an alert dialog with the specified title and message.
      *
-     * @param title The title of the alert dialog.
+     * @param title   The title of the alert dialog.
      * @param message The message to be displayed in the alert dialog.
      */
     private void showAlert(String title, String message) {
@@ -98,5 +124,17 @@ public class UpdateMemberController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    /**
+     * Clears the input fields in the form.
+     */
+    private void clearFields() {
+        memberIdField.clear();
+        nameField.clear();
+        birthdateField.clear();
+        streetField.clear();
+        cityField.clear();
+        zipCodeField.clear();
     }
 }

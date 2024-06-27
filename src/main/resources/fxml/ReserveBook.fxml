@@ -5,23 +5,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ReserveBooksController"
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="mas.lms.controller.ReserveBooksController"
       spacing="20" alignment="CENTER" stylesheets="@../styles/styles.css">
     <!-- Title label for the form -->
-    <Label text="Reserve Book" styleClass="title" />
+    <Label text="Reserve Book" styleClass="title"/>
 
     <GridPane hgap="10" vgap="10" alignment="CENTER">
         <!-- Label and TextField for the member ID -->
-        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
 
         <!-- Label and TextField for the book ID -->
-        <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TextField fx:id="bookIdField" promptText="Enter Book ID" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-        <Button text="Search Book" onAction="#searchBook" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+        <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="bookIdField" promptText="Enter Book ID" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Button text="Search Book" onAction="#searchBook" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
 
         <!-- Button to trigger the reserveBook method in the controller -->
-        <Button text="Reserve Book" onAction="#reserveBook" defaultButton="true" GridPane.rowIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" />
+        <Button text="Reserve Book" onAction="#reserveBook" defaultButton="true" GridPane.rowIndex="2"
+                GridPane.columnSpan="3" GridPane.halignment="CENTER"/>
     </GridPane>
 </VBox>

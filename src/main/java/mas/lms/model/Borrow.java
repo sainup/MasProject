@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 /**
@@ -28,12 +29,14 @@ public class Borrow {
     /**
      * Default constructor for Borrow.
      */
-    public Borrow() {}
+    public Borrow() {
+    }
 
     /**
      * Constructor for creating a Borrow.
-     * @param member the member borrowing the book
-     * @param book the book being borrowed
+     *
+     * @param member     the member borrowing the book
+     * @param book       the book being borrowed
      * @param borrowDate the date of borrowing
      * @param returnDate the date of return
      */
@@ -46,6 +49,7 @@ public class Borrow {
 
     /**
      * Gets the ID of the borrow transaction.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -54,6 +58,7 @@ public class Borrow {
 
     /**
      * Gets the member borrowing the book.
+     *
      * @return the member
      */
     public Member getMember() {
@@ -62,6 +67,7 @@ public class Borrow {
 
     /**
      * Sets the member borrowing the book.
+     *
      * @param member the member to set
      */
     public void setMember(Member member) {
@@ -70,6 +76,7 @@ public class Borrow {
 
     /**
      * Gets the book being borrowed.
+     *
      * @return the book
      */
     public Book getBook() {
@@ -78,6 +85,7 @@ public class Borrow {
 
     /**
      * Sets the book being borrowed.
+     *
      * @param book the book to set
      */
     public void setBook(Book book) {
@@ -86,6 +94,7 @@ public class Borrow {
 
     /**
      * Gets the date of borrowing.
+     *
      * @return the borrow date
      */
     public LocalDate getBorrowDate() {
@@ -94,6 +103,7 @@ public class Borrow {
 
     /**
      * Sets the date of borrowing.
+     *
      * @param borrowDate the borrow date to set
      */
     public void setBorrowDate(LocalDate borrowDate) {
@@ -102,6 +112,7 @@ public class Borrow {
 
     /**
      * Gets the date of return.
+     *
      * @return the return date
      */
     public LocalDate getReturnDate() {
@@ -110,6 +121,7 @@ public class Borrow {
 
     /**
      * Sets the date of return.
+     *
      * @param returnDate the return date to set
      */
     public void setReturnDate(LocalDate returnDate) {
@@ -118,6 +130,7 @@ public class Borrow {
 
     /**
      * Gets the library associated with the borrow transaction.
+     *
      * @return the library
      */
     public Library getLibrary() {
@@ -126,6 +139,7 @@ public class Borrow {
 
     /**
      * Sets the library associated with the borrow transaction.
+     *
      * @param library the library to set
      */
     public void setLibrary(Library library) {
@@ -134,6 +148,7 @@ public class Borrow {
 
     /**
      * Gets the ID of the book being borrowed.
+     *
      * @return the book ID
      */
     public Long getBookId() {
@@ -142,6 +157,7 @@ public class Borrow {
 
     /**
      * Gets the title of the book being borrowed.
+     *
      * @return the book title
      */
     public String getTitle() {
@@ -150,6 +166,7 @@ public class Borrow {
 
     /**
      * Gets the author of the book being borrowed.
+     *
      * @return the book author
      */
     public String getAuthor() {
@@ -158,6 +175,7 @@ public class Borrow {
 
     /**
      * Gets the status of the book being borrowed.
+     *
      * @return the book status
      */
     public String getStatus() {

@@ -1,6 +1,8 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Class representing a book publisher.
@@ -19,7 +21,8 @@ public class Publisher {
 
     /**
      * Constructor for creating a Publisher.
-     * @param name the name of the publisher
+     *
+     * @param name    the name of the publisher
      * @param address the address of the publisher
      */
     public Publisher(String name, Address address) {
@@ -30,10 +33,12 @@ public class Publisher {
     /**
      * Default constructor for Publisher.
      */
-    public Publisher() {}
+    public Publisher() {
+    }
 
     /**
      * Gets the ID of the publisher.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -42,6 +47,7 @@ public class Publisher {
 
     /**
      * Sets the ID of the publisher.
+     *
      * @param id the ID to set
      */
     public void setId(Long id) {
@@ -50,6 +56,7 @@ public class Publisher {
 
     /**
      * Gets the name of the publisher.
+     *
      * @return the name
      */
     public String getName() {
@@ -58,6 +65,7 @@ public class Publisher {
 
     /**
      * Sets the name of the publisher.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -66,6 +74,7 @@ public class Publisher {
 
     /**
      * Gets the address of the publisher.
+     *
      * @return the address
      */
     public Address getAddress() {
@@ -74,9 +83,19 @@ public class Publisher {
 
     /**
      * Sets the address of the publisher.
+     *
      * @param address the address to set
      */
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    /**
+     * Gets the name property for JavaFX.
+     *
+     * @return the name property
+     */
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(name);
     }
 }

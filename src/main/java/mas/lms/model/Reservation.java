@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 /**
@@ -23,6 +24,7 @@ public class Reservation {
 
     /**
      * Constructor for creating a Reservation.
+     *
      * @param reservationDate the date of the reservation
      */
     public Reservation(LocalDate reservationDate) {
@@ -32,10 +34,12 @@ public class Reservation {
     /**
      * Default constructor for Reservation.
      */
-    public Reservation() {}
+    public Reservation() {
+    }
 
     /**
      * Gets the ID of the reservation.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -44,6 +48,7 @@ public class Reservation {
 
     /**
      * Sets the ID of the reservation.
+     *
      * @param id the ID to set
      */
     public void setId(Long id) {
@@ -52,6 +57,7 @@ public class Reservation {
 
     /**
      * Gets the date of the reservation.
+     *
      * @return the reservation date
      */
     public LocalDate getReservationDate() {
@@ -60,6 +66,7 @@ public class Reservation {
 
     /**
      * Sets the date of the reservation.
+     *
      * @param reservationDate the reservation date to set
      */
     public void setReservationDate(LocalDate reservationDate) {
@@ -68,6 +75,7 @@ public class Reservation {
 
     /**
      * Gets the member making the reservation.
+     *
      * @return the member
      */
     public Member getMember() {
@@ -76,6 +84,7 @@ public class Reservation {
 
     /**
      * Sets the member making the reservation.
+     *
      * @param member the member to set
      */
     public void setMember(Member member) {
@@ -84,6 +93,7 @@ public class Reservation {
 
     /**
      * Gets the book being reserved.
+     *
      * @return the book
      */
     public Book getBook() {
@@ -92,6 +102,7 @@ public class Reservation {
 
     /**
      * Sets the book being reserved.
+     *
      * @param book the book to set
      */
     public void setBook(Book book) {

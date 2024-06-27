@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,10 +30,12 @@ public class Library {
     /**
      * Default constructor for Library.
      */
-    public Library() {}
+    public Library() {
+    }
 
     /**
      * Constructor for creating a Library with a name.
+     *
      * @param name the name of the library
      */
     public Library(String name) {
@@ -41,6 +44,7 @@ public class Library {
 
     /**
      * Gets the ID of the library.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -49,6 +53,7 @@ public class Library {
 
     /**
      * Sets the ID of the library.
+     *
      * @param id the ID to set
      */
     public void setId(Long id) {
@@ -57,6 +62,7 @@ public class Library {
 
     /**
      * Gets the name of the library.
+     *
      * @return the name
      */
     public String getName() {
@@ -65,6 +71,7 @@ public class Library {
 
     /**
      * Sets the name of the library.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -73,6 +80,7 @@ public class Library {
 
     /**
      * Gets the set of books in the library.
+     *
      * @return the set of books
      */
     public Set<Book> getBooks() {
@@ -81,6 +89,7 @@ public class Library {
 
     /**
      * Sets the set of books in the library.
+     *
      * @param books the set of books to set
      */
     public void setBooks(Set<Book> books) {
@@ -89,6 +98,7 @@ public class Library {
 
     /**
      * Adds a book to the library.
+     *
      * @param book the book to add
      */
     public void addBook(Book book) {
@@ -98,6 +108,7 @@ public class Library {
 
     /**
      * Gets the set of members in the library.
+     *
      * @return the set of members
      */
     public Set<Member> getMembers() {
@@ -106,6 +117,7 @@ public class Library {
 
     /**
      * Sets the set of members in the library.
+     *
      * @param members the set of members to set
      */
     public void setMembers(Set<Member> members) {
@@ -114,6 +126,7 @@ public class Library {
 
     /**
      * Adds a member to the library.
+     *
      * @param member the member to add
      */
     public void addMember(Member member) {
@@ -123,6 +136,7 @@ public class Library {
 
     /**
      * Gets the set of borrows in the library.
+     *
      * @return the set of borrows
      */
     public Set<Borrow> getBorrows() {
@@ -131,6 +145,7 @@ public class Library {
 
     /**
      * Sets the set of borrows in the library.
+     *
      * @param borrows the set of borrows to set
      */
     public void setBorrows(Set<Borrow> borrows) {
@@ -139,6 +154,7 @@ public class Library {
 
     /**
      * Adds a borrow to the library.
+     *
      * @param borrow the borrow to add
      */
     public void addBorrow(Borrow borrow) {
@@ -148,6 +164,7 @@ public class Library {
 
     /**
      * Gets the opening hours of the library.
+     *
      * @return the opening hours
      */
     public static String getOpeningHours() {

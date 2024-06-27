@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
 /**
@@ -14,10 +15,11 @@ public class Librarian extends Person {
 
     /**
      * Constructor for creating a Librarian.
-     * @param name the name of the librarian
-     * @param birthdate the birthdate of the librarian
+     *
+     * @param name       the name of the librarian
+     * @param birthdate  the birthdate of the librarian
      * @param employeeId the employee ID of the librarian
-     * @param hireDate the hire date of the librarian
+     * @param hireDate   the hire date of the librarian
      */
     public Librarian(String name, LocalDate birthdate, int employeeId, LocalDate hireDate) {
         super(name, birthdate);

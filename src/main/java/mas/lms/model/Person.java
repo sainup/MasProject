@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.MappedSuperclass;
+
 import java.time.LocalDate;
 
 /**
@@ -14,7 +15,8 @@ public abstract class Person {
 
     /**
      * Constructor for creating a Person.
-     * @param name the name of the person
+     *
+     * @param name      the name of the person
      * @param birthdate the birthdate of the person
      */
     public Person(String name, LocalDate birthdate) {
@@ -30,6 +32,7 @@ public abstract class Person {
 
     /**
      * Gets the name of the person.
+     *
      * @return the name
      */
     public String getName() {
@@ -38,6 +41,7 @@ public abstract class Person {
 
     /**
      * Sets the name of the person.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -46,6 +50,7 @@ public abstract class Person {
 
     /**
      * Gets the birthdate of the person.
+     *
      * @return the birthdate
      */
     public LocalDate getBirthdate() {
@@ -54,6 +59,7 @@ public abstract class Person {
 
     /**
      * Sets the birthdate of the person.
+     *
      * @param birthdate the birthdate to set
      */
     public void setBirthdate(LocalDate birthdate) {

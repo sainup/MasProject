@@ -115,7 +115,7 @@ public class SearchBooksController {
     /**
      * Displays an alert dialog with the specified title and message.
      *
-     * @param title The title of the alert dialog.
+     * @param title   The title of the alert dialog.
      * @param message The message to be displayed in the alert dialog.
      */
     private void showAlert(String title, String message) {

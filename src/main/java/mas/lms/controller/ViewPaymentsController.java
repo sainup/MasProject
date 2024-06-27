@@ -40,6 +40,7 @@ public class ViewPaymentsController {
     private TableColumn<Payment, String> paymentMethodColumn;
 
     private ObservableList<Payment> paymentList;
+
     /**
      * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
      */

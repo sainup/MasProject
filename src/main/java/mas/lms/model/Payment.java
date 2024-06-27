@@ -1,6 +1,7 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 /**
@@ -25,13 +26,15 @@ public class Payment {
     /**
      * Default constructor for Payment.
      */
-    public Payment() {}
+    public Payment() {
+    }
 
     /**
      * Constructor for creating a Payment.
+     *
      * @param member the member making the payment
      * @param amount the amount of the payment
-     * @param type the type of the payment (e.g., fine, membership)
+     * @param type   the type of the payment (e.g., fine, membership)
      */
     public Payment(Member member, double amount, String type, PaymentMethod paymentMethod) {
         this.member = member;
@@ -52,6 +55,7 @@ public class Payment {
 
     /**
      * Gets the ID of the payment.
+     *
      * @return the ID
      */
     public Long getId() {
@@ -60,6 +64,7 @@ public class Payment {
 
     /**
      * Sets the ID of the payment.
+     *
      * @param id the ID to set
      */
     public void setId(Long id) {
@@ -68,6 +73,7 @@ public class Payment {
 
     /**
      * Gets the member making the payment.
+     *
      * @return the member
      */
     public Member getMember() {
@@ -76,6 +82,7 @@ public class Payment {
 
     /**
      * Sets the member making the payment.
+     *
      * @param member the member to set
      */
     public void setMember(Member member) {
@@ -84,6 +91,7 @@ public class Payment {
 
     /**
      * Gets the amount of the payment.
+     *
      * @return the amount
      */
     public double getAmount() {
@@ -92,6 +100,7 @@ public class Payment {
 
     /**
      * Sets the amount of the payment.
+     *
      * @param amount the amount to set
      */
     public void setAmount(double amount) {
@@ -100,6 +109,7 @@ public class Payment {
 
     /**
      * Gets the type of the payment.
+     *
      * @return the type
      */
     public String getType() {
@@ -108,6 +118,7 @@ public class Payment {
 
     /**
      * Sets the type of the payment.
+     *
      * @param type the type to set
      */
     public void setType(String type) {
@@ -116,6 +127,7 @@ public class Payment {
 
     /**
      * Gets the date of the payment.
+     *
      * @return the date
      */
     public LocalDate getDate() {
@@ -124,6 +136,7 @@ public class Payment {
 
     /**
      * Sets the date of the payment.
+     *
      * @param date the date to set
      */
     public void setDate(LocalDate date) {

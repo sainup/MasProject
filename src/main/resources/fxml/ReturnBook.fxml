@@ -5,18 +5,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ReturnBookController"
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="mas.lms.controller.ReturnBookController"
       spacing="20" alignment="CENTER" stylesheets="@../styles/styles.css">
-    <Label text="Record Book Return" styleClass="title" />
+    <Label text="Record Book Return" styleClass="title"/>
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="memberIdField" promptText="Enter Member ID" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Button text="Search Member" onAction="#searchMember" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
 
-        <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TextField fx:id="bookIdField" promptText="Enter Book ID" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-        <Button text="Search Book" onAction="#searchBook" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+        <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="bookIdField" promptText="Enter Book ID" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Button text="Search Book" onAction="#searchBook" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
 
-        <Button text="Record Returning" onAction="#recordReturning" defaultButton="true" GridPane.rowIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" />
+        <Button text="Record Returning" onAction="#recordReturning" defaultButton="true" GridPane.rowIndex="2"
+                GridPane.columnSpan="3" GridPane.halignment="CENTER"/>
     </GridPane>
 </VBox>

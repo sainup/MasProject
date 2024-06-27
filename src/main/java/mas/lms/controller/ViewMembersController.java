@@ -10,10 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import mas.lms.model.Borrow;
+import mas.lms.model.Member;
 import mas.lms.util.DeletionUtil;
 import mas.lms.util.HibernateUtil;
-import mas.lms.model.Member;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -21,6 +20,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller class for viewing and managing members.
+ */
 public class ViewMembersController {
 
     @FXML
@@ -50,7 +52,8 @@ public class ViewMembersController {
     private ObservableList<Member> memberList;
 
     /**
-     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
      */
     @FXML
     public void initialize() {
@@ -69,7 +72,7 @@ public class ViewMembersController {
     }
 
     /**
-     * Loads members from the database and populates the table.
+     * Loads the members from the database and populates the table.
      */
     private void loadMembers() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -81,7 +84,8 @@ public class ViewMembersController {
     }
 
     /**
-     * Updates the selected member's information.
+     * Handles the action event when the "Update Member" button is clicked.
+     * Opens the update member dialog.
      */
     private void updateMember() {
         Member selectedMember = membersTable.getSelectionModel().getSelectedItem();
@@ -97,7 +101,7 @@ public class ViewMembersController {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle("Update Member");
                 stage.setScene(new Scene(root));
-                controller.setStage(stage);
+                controller.setStage(stage); // Set the stage in the controller
                 stage.showAndWait();
 
                 loadMembers(); // Refresh the member list after the update
@@ -111,7 +115,8 @@ public class ViewMembersController {
     }
 
     /**
-     * Deletes the selected member from the database.
+     * Handles the action event when the "Delete Member" button is clicked.
+     * Deletes the selected member.
      */
     private void deleteMember() {
         Member selectedMember = membersTable.getSelectionModel().getSelectedItem();
@@ -133,9 +138,9 @@ public class ViewMembersController {
     }
 
     /**
-     * Handles delete exceptions due to referential integrity constraints.
+     * Handles the deletion exception if the member has associated records.
      *
-     * @param memberId The ID of the member to be deleted.
+     * @param memberId The ID of the member that failed to be deleted.
      */
     private void handleDeleteException(Long memberId) {
         boolean confirmed = DeletionUtil.showConfirmation("Referential Integrity Constraint Violation",
@@ -150,7 +155,7 @@ public class ViewMembersController {
     /**
      * Displays an alert dialog with the specified title and message.
      *
-     * @param title The title of the alert dialog.
+     * @param title   The title of the alert dialog.
      * @param message The message to be displayed in the alert dialog.
      */
     private void showAlert(String title, String message) {

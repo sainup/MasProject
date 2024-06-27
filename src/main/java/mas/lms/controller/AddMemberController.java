@@ -47,15 +47,18 @@ public class AddMemberController {
         String zipCode = zipCodeField.getText();
 
         // Validate input fields
-        if (name.isEmpty() || birthdate.isEmpty() || street.isEmpty() || city.isEmpty() || zipCode.isEmpty()) {
-            showAlert("Validation Error", "Name, Birthdate, and Address fields are required.");
+        if (name.isEmpty() || birthdate.isEmpty()) {
+            showAlert("Validation Error", "Name and Birthdate are required.");
             return;
         }
 
         // Parse birthdate and save the new member to the database
         try {
             LocalDate birthDateParsed = LocalDate.parse(birthdate);
-            Address address = new Address(street, city, zipCode);
+            Address address = null;
+            if (!street.isEmpty() && !city.isEmpty() && !zipCode.isEmpty()) {
+                address = new Address(street, city, zipCode);
+            }
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 Transaction transaction = session.beginTransaction();
                 Member member = new Member(name, birthDateParsed, address);
@@ -73,7 +76,7 @@ public class AddMemberController {
     /**
      * Displays an alert dialog with the specified title and message.
      *
-     * @param title The title of the alert dialog.
+     * @param title   The title of the alert dialog.
      * @param message The message to be displayed in the alert dialog.
      */
     private void showAlert(String title, String message) {
