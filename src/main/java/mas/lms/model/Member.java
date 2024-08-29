@@ -1,6 +1,8 @@
 package mas.lms.model;
 
 import jakarta.persistence.*;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -31,7 +33,7 @@ public class Member extends Person {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Borrow> borrows = new HashSet<>();
 
     @Embedded
@@ -148,5 +150,9 @@ public class Member extends Person {
 
     public StringProperty nameProperty() {
         return new SimpleStringProperty(getName());
+    }
+
+    public LongProperty idProperty() {
+        return new SimpleLongProperty(id);
     }
 }

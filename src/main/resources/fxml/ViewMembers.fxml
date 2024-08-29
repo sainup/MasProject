@@ -11,7 +11,7 @@
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <TableView fx:id="membersTable" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS" styleClass="table-view">
+    <TableView fx:id="membersTable" prefHeight="200.0" prefWidth="600.0" VBox.vgrow="ALWAYS" styleClass="table-view">
         <columns>
             <TableColumn fx:id="idColumn" text="ID" minWidth="50" styleClass="table-column"/>
             <TableColumn fx:id="nameColumn" text="Name" minWidth="150" styleClass="table-column"/>
@@ -20,6 +20,7 @@
             <TableColumn fx:id="daysBorrowedColumn" text="Days Borrowed" minWidth="100" styleClass="table-column"/>
         </columns>
     </TableView>
+
     <HBox spacing="10" alignment="CENTER" styleClass="hbox">
         <Button fx:id="updateMemberButton" text="Update Member" minWidth="100" styleClass="button"/>
         <Button fx:id="deleteMemberButton" text="Delete Member" minWidth="100" styleClass="button"/>

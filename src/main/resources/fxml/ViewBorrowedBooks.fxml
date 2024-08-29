@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="mas.lms.controller.ViewBorrowedBooksController" spacing="15"
+      stylesheets="@../styles/styles.css">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Borrowed Books List" styleClass="title"/>
+    <TableView fx:id="borrowedBooksTable" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS" styleClass="table-view">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" text="Book ID" minWidth="50" styleClass="table-column"/>
+            <TableColumn fx:id="bookTitleColumn" text="Book Title" minWidth="150" styleClass="table-column"/>
+        </columns>
+    </TableView>
+    <Button text="Close" onAction="#closeWindow" minWidth="100" styleClass="button"/>
+</VBox>

@@ -32,7 +32,7 @@ public class Book {
     @ManyToOne
     private Publisher publisher;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Borrow> borrows = new HashSet<>();
 
     /**

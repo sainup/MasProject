@@ -8,8 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mas.lms.model.Book;
+import mas.lms.model.Borrow;
 import mas.lms.model.Member;
 import mas.lms.util.DeletionUtil;
 import mas.lms.util.HibernateUtil;
@@ -19,6 +23,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller class for viewing and managing members.
@@ -26,47 +31,70 @@ import java.util.List;
 public class ViewMembersController {
 
     @FXML
-    private TableView<Member> membersTable;
+    private TableView<Member> membersTable; // TableView for displaying members
 
     @FXML
-    private TableColumn<Member, Long> idColumn;
+    private TableColumn<Member, Long> idColumn; // Column for member ID
 
     @FXML
-    private TableColumn<Member, String> nameColumn;
+    private TableColumn<Member, String> nameColumn; // Column for member name
 
     @FXML
-    private TableColumn<Member, LocalDate> birthdateColumn;
+    private TableColumn<Member, LocalDate> birthdateColumn; // Column for member birthdate
 
     @FXML
-    private TableColumn<Member, Boolean> goldMemberColumn;
+    private TableColumn<Member, Boolean> goldMemberColumn; // Column for gold member status
 
     @FXML
-    private TableColumn<Member, Integer> daysBorrowedColumn;
+    private TableColumn<Member, Integer> daysBorrowedColumn; // Column for days borrowed
 
     @FXML
-    private Button updateMemberButton;
+    private TableView<Book> borrowedBooksTable; // TableView for displaying books borrowed by the selected member
 
     @FXML
-    private Button deleteMemberButton;
+    private TableColumn<Book, Long> bookIdColumn; // Column for book ID
 
-    private ObservableList<Member> memberList;
+    @FXML
+    private TableColumn<Book, String> bookTitleColumn; // Column for book title
+
+    @FXML
+    private Button updateMemberButton; // Button for updating member information
+
+    @FXML
+    private Button deleteMemberButton; // Button for deleting a member
+
+    private ObservableList<Member> memberList; // List of members for the TableView
+    private ObservableList<Book> borrowedBookList; // List of borrowed books for the secondary TableView
 
     /**
      * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
+     * after the FXML file has been loaded.
      */
     @FXML
     public void initialize() {
+        // Set up the table columns with property values
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         birthdateColumn.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
         goldMemberColumn.setCellValueFactory(new PropertyValueFactory<>("goldMember"));
         daysBorrowedColumn.setCellValueFactory(new PropertyValueFactory<>("daysBorrowed"));
 
+        // Initialize the member list and populate it
         memberList = FXCollections.observableArrayList();
         loadMembers();
         membersTable.setItems(memberList);
 
+        // Add a double-click listener to open a new window when a member is double-clicked
+        membersTable.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                Member selectedMember = membersTable.getSelectionModel().getSelectedItem();
+                if (selectedMember != null) {
+                    showBorrowedBooksForSelectedMember(selectedMember);
+                }
+            }
+        });
+
+        // Set actions for update and delete buttons
         updateMemberButton.setOnAction(event -> updateMember());
         deleteMemberButton.setOnAction(event -> deleteMember());
     }
@@ -127,7 +155,7 @@ public class ViewMembersController {
             if (confirmed) {
                 try {
                     DeletionUtil.deleteEntity(Member.class, selectedMember.getId(), "Member");
-                    loadMembers();
+                    loadMembers(); // Refresh the member list after deletion
                 } catch (ConstraintViolationException e) {
                     handleDeleteException(selectedMember.getId());
                 }
@@ -135,6 +163,45 @@ public class ViewMembersController {
         } else {
             DeletionUtil.showAlert("Selection Error", "Please select a member to delete.");
         }
+    }
+
+    /**
+     * Opens a new window to show the list of books borrowed by the selected member.
+     *
+     * @param selectedMember The member that was selected.
+     */
+    private void showBorrowedBooksForSelectedMember(Member selectedMember) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ViewBorrowedBooks.fxml"));
+            Parent root = loader.load();
+
+            ViewBorrowedBooksController controller = loader.getController();
+            List<Book> borrowedBooks = getBorrowedBooksForMember(selectedMember);
+            controller.setBorrowedBooks(borrowedBooks);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Books Borrowed by: " + selectedMember.getName());
+            stage.setScene(new Scene(root));
+            controller.setStage(stage);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Loading Error", "Unable to load the borrowed books dialog.");
+        }
+    }
+
+    /**
+     * Retrieves the list of books borrowed by the given member.
+     *
+     * @param member The member for which to retrieve borrowed books.
+     * @return A list of books borrowed by the member.
+     */
+    private List<Book> getBorrowedBooksForMember(Member member) {
+        // Using association from the model to get the list of borrowed books
+        return member.getBorrows().stream()
+                .map(Borrow::getBook)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -148,7 +215,7 @@ public class ViewMembersController {
 
         if (confirmed) {
             DeletionUtil.forceDeleteEntity(Member.class, memberId, "Member");
-            loadMembers();
+            loadMembers(); // Refresh the member list after force deletion
         }
     }
 
